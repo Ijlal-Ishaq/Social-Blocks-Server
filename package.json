@@ -1,0 +1,28 @@
+{
+  "name": "social-blocks-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon server.js",
+    "push": "git push origin main && git push heroku main"
+  },
+  "dependencies": {
+    "axios": "^0.26.1",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
+    "ethereumjs-abi": "^0.6.8",
+    "express": "^4.17.3",
+    "keccak256": "^1.0.6",
+    "mongoose": "^6.2.9",
+    "node-schedule": "^2.1.0",
+    "nodemon": "^2.0.15",
+    "web3": "^1.7.3"
+  },
+  "author": "",
+  "license": "ISC",
+  "engines": {
+    "node": "16.x"
+  }
+}

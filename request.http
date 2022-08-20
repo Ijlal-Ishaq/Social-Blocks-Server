@@ -1,0 +1,32 @@
+GET http://localhost:5001/users/getRisingCreators
+
+###
+
+GET http://localhost:5001/posts/getUserPosts?address=0xbf95c8c31feda5585381e1f62313d68a65cab0ff&type=creator
+
+
+### 
+
+GET https://socialblocks.herokuapp.com/users/getAllUsers
+
+###
+
+GET https://calm-tor-92545.herokuapp.com/users/getAllUsers
+
+###
+GET http://localhost:5001/users/details?address=0xbf95c8c31feda5585381e1f62313d68a65cab0ff
+
+###
+
+POST http://localhost:5001/users/follow
+Content-Type: application/json
+
+{
+    "signature": "",
+    "userAddress": "",
+    "userId": ""
+}
+
+###
+
+GET http://localhost:5001/users/getFollowers/0x23e05938b4619035870836d22c4ef9988623c384
