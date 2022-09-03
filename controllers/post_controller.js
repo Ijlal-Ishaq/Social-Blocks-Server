@@ -60,7 +60,7 @@ const getCopies = async (req, res) => {
       const CopiesObj = new Copies({
         postId: post.id,
         pHash: imgHash,
-        copyOf: minDistance <= 5 ? copyPostId : 0,
+        copyOf: minDistance <= 9 ? copyPostId : 0,
       });
 
       await CopiesObj.save();
