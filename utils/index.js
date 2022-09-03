@@ -1,6 +1,6 @@
 const keccak = require("keccak256");
 const Web3 = require("web3");
-const Likes = require("../models/likes");
+const Likes = require("../models/Likes");
 const axios = require("axios");
 
 const web3 = new Web3("https://rpc-mumbai.maticvigil.com/");

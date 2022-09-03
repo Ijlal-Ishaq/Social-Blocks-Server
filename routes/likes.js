@@ -13,14 +13,6 @@ router.post("/getLikesHash", verifySignature, async (req, res) => {
   res.json(data);
 });
 
-/**
- * {
- *  signature: "",
- *  userAddress: "",
- *  likes: 23
- * }
- */
-
 module.exports = {
   router: router,
 };

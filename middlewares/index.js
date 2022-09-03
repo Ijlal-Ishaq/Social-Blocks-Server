@@ -1,6 +1,5 @@
 const Web3 = require("web3");
 const keccak = require("keccak256");
-const User = require("../models/user");
 
 const web3 = new Web3("https://rpc-mumbai.maticvigil.com/");
 

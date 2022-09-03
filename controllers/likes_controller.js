@@ -1,4 +1,4 @@
-const Likes = require("../models/likes");
+const Likes = require("../models/Likes");
 
 const setLike = async (req, res) => {
   let checkLike = await Likes.findOne({

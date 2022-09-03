@@ -1,5 +1,5 @@
-const User = require("../models/user");
-const Like = require("../models/likes");
+const User = require("../models/User");
+const Like = require("../models/Likes");
 const axios = require("axios");
 
 const getRisingCreators = async (_, res) => {
