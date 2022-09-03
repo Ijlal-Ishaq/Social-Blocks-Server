@@ -5,6 +5,7 @@ const dist = require("sharp-phash/distance");
 
 const User = require("../models/User");
 const Copies = require("../models/Copies");
+const distance = require("sharp-phash/distance");
 
 const getCopies = async (req, res) => {
   const postId = req.params.id;
@@ -40,41 +41,33 @@ const getCopies = async (req, res) => {
       const response = await axios.get(imgUrl, { responseType: "arraybuffer" });
       const imgBuffer = Buffer.from(response.data, "utf-8");
 
-      const hashWhite = 1100110011001001111001100111000001001000111100100011111100011101;
+      const imgHash = await phash(imgBuffer);
 
-      const hashImg = await phash(imgBuffer);
-      const distanceFromWhite = dist(hashImg, hashWhite);
+      const copies = await Copies.find({}).sort({ postId: 1 });
 
-      const copies = await Copies.find({
-        distanceFromWhite: {
-          $gt: distanceFromWhite - 3,
-          $lt: distanceFromWhite + 3,
-        },
-      }).sort({ postId: 1 });
+      let distance = 0;
+      let minDistance = 64;
+      let copyPostId;
 
-      if (copies.length > 0) {
-        const CopiesObj = new Copies({
-          postId: post.id,
-          distanceFromWhite: distanceFromWhite,
-          copyOf: copies[0].postId,
-        });
-
-        await CopiesObj.save();
-        res.json({
-          copyOf: CopiesObj.copyOf,
-        });
-      } else {
-        const CopiesObj = new Copies({
-          postId: post.id,
-          distanceFromWhite: distanceFromWhite,
-          copyOf: 0,
-        });
-
-        await CopiesObj.save();
-        res.json({
-          copyOf: CopiesObj.copyOf,
-        });
+      for (let i = 0; i < copies.length && copies[i].postId < post.id; i++) {
+        distance = dist(imgHash, copies[i].pHash);
+        if (distance < minDistance) {
+          minDistance = distance;
+          copyPostId = copies[i].postId;
+        }
       }
+
+      const CopiesObj = new Copies({
+        postId: post.id,
+        pHash: imgHash,
+        copyOf: minDistance <= 5 ? copyPostId : 0,
+      });
+
+      await CopiesObj.save();
+
+      res.json({
+        copyOf: CopiesObj.copyOf,
+      });
     } else {
       res.json({
         copyOf: 0,

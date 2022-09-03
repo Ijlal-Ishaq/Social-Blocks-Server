@@ -7,8 +7,8 @@ const copies = new Schema(
       type: String,
       required: true,
     },
-    distanceFromWhite: {
-      type: Number,
+    pHash: {
+      type: String,
       required: true,
     },
     copyOf: {
