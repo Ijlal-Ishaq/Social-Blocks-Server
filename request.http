@@ -18,15 +18,24 @@ GET http://localhost:5001/users/details?address=0xbf95c8c31feda5585381e1f62313d6
 
 ###
 
-POST http://localhost:5001/users/follow
+POST http://localhost:5001/type/setType
 Content-Type: application/json
 
 {
-    "signature": "",
-    "userAddress": "",
-    "userId": ""
+    "postId": "62ff8330de88c606cfdacc09",
+    "type": "image"
 }
 
 ###
 
 GET http://localhost:5001/users/getFollowers/0x23e05938b4619035870836d22c4ef9988623c384
+
+###
+
+POST http://localhost:5001/type/getType
+Content-Type: application/json
+
+{
+    "postId": "62ff8330de88c606cfdacc09"
+}
+
