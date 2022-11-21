@@ -855,7 +855,7 @@ const ABI = [
 
 module.exports = {
 	createSignature: async (postId) => {
-		const web3 = new Web3("https://polygon-mumbai.g.alchemy.com/v2/5MfjmScw7iPoX389ZCYuKOtgtsA1Eg4g");
+		const web3 = new Web3("https://aurora-testnet.infura.io/v3/7f6f5921404842ba992a4d334431c6f7");
 
 		let post = await Likes.findOne({ postId: postId });
 
